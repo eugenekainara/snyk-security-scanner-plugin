@@ -41,6 +41,7 @@ class CustomBuildToolPathCallable implements FilePath.FileCallable<String> {
       toolsSubDirectories.filter(Files::isDirectory)
                          .filter(path -> !path.toString().contains("SnykInstallation"))
                          .filter(path -> !path.toString().contains("jansi-native"))
+                         .filter(path -> path.toString().endsWith("bin"))
                          .forEach(entry -> toolsPaths.add(chomp(entry.toAbsolutePath().toString())));
 
       String customBuildToolPath = join(File.pathSeparator, toolsPaths);
